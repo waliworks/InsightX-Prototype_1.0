@@ -9,7 +9,209 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      jobs: {
+        Row: {
+          actual_end: string | null
+          actual_start: string | null
+          cost: number | null
+          created_at: string | null
+          customer_email: string | null
+          customer_name: string
+          customer_phone: string
+          feedback_comments: string | null
+          feedback_rating: number | null
+          id: string
+          job_number: string
+          job_type: string
+          location_id: string | null
+          notes: string | null
+          revenue: number | null
+          scheduled_end: string
+          scheduled_start: string
+          status: string
+          technician_id: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          actual_end?: string | null
+          actual_start?: string | null
+          cost?: number | null
+          created_at?: string | null
+          customer_email?: string | null
+          customer_name: string
+          customer_phone: string
+          feedback_comments?: string | null
+          feedback_rating?: number | null
+          id?: string
+          job_number: string
+          job_type: string
+          location_id?: string | null
+          notes?: string | null
+          revenue?: number | null
+          scheduled_end: string
+          scheduled_start: string
+          status?: string
+          technician_id?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          actual_end?: string | null
+          actual_start?: string | null
+          cost?: number | null
+          created_at?: string | null
+          customer_email?: string | null
+          customer_name?: string
+          customer_phone?: string
+          feedback_comments?: string | null
+          feedback_rating?: number | null
+          id?: string
+          job_number?: string
+          job_type?: string
+          location_id?: string | null
+          notes?: string | null
+          revenue?: number | null
+          scheduled_end?: string
+          scheduled_start?: string
+          status?: string
+          technician_id?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "jobs_location_id_fkey"
+            columns: ["location_id"]
+            isOneToOne: false
+            referencedRelation: "locations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "jobs_technician_id_fkey"
+            columns: ["technician_id"]
+            isOneToOne: false
+            referencedRelation: "technicians"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      locations: {
+        Row: {
+          area_name: string | null
+          city: string
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          state: string
+          updated_at: string | null
+          zip_code: string
+        }
+        Insert: {
+          area_name?: string | null
+          city: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          state: string
+          updated_at?: string | null
+          zip_code: string
+        }
+        Update: {
+          area_name?: string | null
+          city?: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          state?: string
+          updated_at?: string | null
+          zip_code?: string
+        }
+        Relationships: []
+      }
+      payments: {
+        Row: {
+          amount: number
+          created_at: string | null
+          id: string
+          job_id: string | null
+          payment_date: string | null
+          payment_method: string
+          payment_status: string
+          transaction_id: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          id?: string
+          job_id?: string | null
+          payment_date?: string | null
+          payment_method: string
+          payment_status?: string
+          transaction_id?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          id?: string
+          job_id?: string | null
+          payment_date?: string | null
+          payment_method?: string
+          payment_status?: string
+          transaction_id?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      technicians: {
+        Row: {
+          created_at: string | null
+          email: string
+          hire_date: string
+          hourly_rate: number
+          id: string
+          name: string
+          phone: string | null
+          rating: number | null
+          specialization: string
+          status: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          hire_date?: string
+          hourly_rate: number
+          id?: string
+          name: string
+          phone?: string | null
+          rating?: number | null
+          specialization: string
+          status?: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          hire_date?: string
+          hourly_rate?: number
+          id?: string
+          name?: string
+          phone?: string | null
+          rating?: number | null
+          specialization?: string
+          status?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
