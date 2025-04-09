@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { CircleUp, CircleDown, Info } from 'lucide-react';
+import { ArrowUpCircle, ArrowDownCircle, Info } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
@@ -52,9 +52,9 @@ const StatCard = ({
           {change && (
             <div className="flex items-center gap-1 mt-1">
               {change.isPositive ? (
-                <CircleUp size={16} className="text-green-600" />
+                <ArrowUpCircle size={16} className="text-green-600" />
               ) : (
-                <CircleDown size={16} className="text-red-500" />
+                <ArrowDownCircle size={16} className="text-red-500" />
               )}
               <span className={change.isPositive ? 'trend-up' : 'trend-down'}>
                 {change.value} {change.text || ''}
