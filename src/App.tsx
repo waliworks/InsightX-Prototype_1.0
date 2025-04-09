@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Technicians from "./pages/Technicians";
 import Locations from "./pages/Locations";
+import Schedule from "./pages/Schedule";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,7 +23,7 @@ const App = () => (
           <Route path="/performance" element={<Index />} /> {/* Placeholder routes */}
           <Route path="/technicians" element={<Technicians />} />
           <Route path="/locations" element={<Locations />} />
-          <Route path="/schedule" element={<Index />} />
+          <Route path="/schedule" element={<Schedule />} />
           <Route path="/import" element={<Index />} />
           <Route path="/settings" element={<Index />} />
           <Route path="*" element={<NotFound />} />
