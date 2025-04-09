@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
@@ -20,6 +19,16 @@ type Technician = {
   rating: number | null;
 };
 
+// Define a separate type for form data that matches what Supabase expects
+type TechnicianFormData = {
+  name: string;
+  email: string;
+  phone: string | null;
+  specialization: string;
+  hourly_rate: number;
+  status: string;
+};
+
 interface TechnicianModalProps {
   isOpen: boolean;
   onClose: (shouldRefetch: boolean) => void;
@@ -29,7 +38,7 @@ interface TechnicianModalProps {
 
 const TechnicianModal = ({ isOpen, onClose, technician, mode }: TechnicianModalProps) => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState<Partial<Technician>>({
+  const [formData, setFormData] = useState<TechnicianFormData>({
     name: '',
     email: '',
     phone: '',
@@ -110,9 +119,17 @@ const TechnicianModal = ({ isOpen, onClose, technician, mode }: TechnicianModalP
     
     try {
       if (mode === 'create') {
+        // Make sure we're providing all required fields to Supabase
         const { data, error } = await supabase
           .from('technicians')
-          .insert(formData)
+          .insert({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone || null,
+            specialization: formData.specialization,
+            hourly_rate: formData.hourly_rate,
+            status: formData.status
+          })
           .select();
         
         if (error) throw error;
@@ -124,7 +141,14 @@ const TechnicianModal = ({ isOpen, onClose, technician, mode }: TechnicianModalP
       } else if (mode === 'edit' && technician) {
         const { data, error } = await supabase
           .from('technicians')
-          .update(formData)
+          .update({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone || null,
+            specialization: formData.specialization,
+            hourly_rate: formData.hourly_rate,
+            status: formData.status
+          })
           .eq('id', technician.id)
           .select();
         
