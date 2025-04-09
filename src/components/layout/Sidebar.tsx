@@ -9,7 +9,7 @@ import {
   Calendar, 
   Settings, 
   Upload,
-  Home
+  LineChart3 // Changed from Home to LineChart3 for a more insight/analytics focused icon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -31,8 +31,8 @@ const Sidebar = ({ className }: { className?: string }) => {
     <div className={cn('w-64 h-screen bg-white border-r border-border flex flex-col', className)}>
       <div className="p-4 border-b border-border">
         <Link to="/" className="flex items-center gap-2 text-xl font-bold text-insight">
-          <Home size={24} />
-          <span>Home Genius</span>
+          <LineChart3 size={24} />
+          <span>Insight X</span>
         </Link>
       </div>
       <nav className="flex-1 p-4 space-y-1">
