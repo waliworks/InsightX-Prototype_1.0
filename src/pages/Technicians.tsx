@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -19,14 +19,14 @@ type Technician = {
   id: string;
   name: string;
   email: string;
-  phone: string;
+  phone: string | null;
   specialization: string;
   hourly_rate: number;
   hire_date: string;
   status: string;
-  rating: number;
-  created_at: string;
-  updated_at: string;
+  rating: number | null;
+  created_at: string | null;
+  updated_at: string | null;
 };
 
 const TechniciansPage = () => {

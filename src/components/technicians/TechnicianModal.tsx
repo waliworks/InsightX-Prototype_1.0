@@ -12,12 +12,12 @@ type Technician = {
   id: string;
   name: string;
   email: string;
-  phone: string;
+  phone: string | null;
   specialization: string;
   hourly_rate: number;
   hire_date: string;
   status: string;
-  rating: number;
+  rating: number | null;
 };
 
 interface TechnicianModalProps {
@@ -113,8 +113,7 @@ const TechnicianModal = ({ isOpen, onClose, technician, mode }: TechnicianModalP
         const { data, error } = await supabase
           .from('technicians')
           .insert(formData)
-          .select()
-          .single();
+          .select();
         
         if (error) throw error;
         
@@ -127,8 +126,7 @@ const TechnicianModal = ({ isOpen, onClose, technician, mode }: TechnicianModalP
           .from('technicians')
           .update(formData)
           .eq('id', technician.id)
-          .select()
-          .single();
+          .select();
         
         if (error) throw error;
         
@@ -196,7 +194,7 @@ const TechnicianModal = ({ isOpen, onClose, technician, mode }: TechnicianModalP
               <Input
                 id="phone"
                 name="phone"
-                value={formData.phone}
+                value={formData.phone || ''}
                 onChange={handleChange}
                 placeholder="555-123-4567"
               />
